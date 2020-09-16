@@ -51,7 +51,7 @@ struct AddBookView: View {
 
                         try? self.moc.save()
                         self.presentationMode.wrappedValue.dismiss()
-                    }
+                    }.disabled(self.title.isEmpty || self.genre == "")
                 }
             }
         .navigationBarTitle("Add Book")
