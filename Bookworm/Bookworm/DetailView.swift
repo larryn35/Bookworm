@@ -13,6 +13,12 @@ struct DetailView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
     
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d, y"
+        return formatter
+    }
+
     @State private var showingDeleteAlert = false
     
     let book: Book
@@ -40,6 +46,10 @@ struct DetailView: View {
                     .padding()
                 RatingView(rating: .constant(Int(self.book.rating)))
                     .font(.largeTitle)
+                Text("Date reviewed")
+                    .padding(.top)
+                Text(self.dateFormatter.string(from: self.book.date!))
+
                 Spacer()
             }
         }
